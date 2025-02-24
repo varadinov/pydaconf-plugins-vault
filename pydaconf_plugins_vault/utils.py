@@ -1,7 +1,13 @@
 import re
 
+from pydaconf_plugins_vault.config_model import ConfigParams
 
-def parse_config_string(config: str) -> dict:
+
+def parse_config_model(config: str) -> ConfigParams:
+    config_dict = parse_config_params(config)
+    return ConfigParams(**config_dict)
+
+def parse_config_params(config: str) -> dict:
     """Parses a key=value string into a dictionary using regex, handling optional fields."""
 
     pattern = re.compile(r'(\w+)=([^,]+)')
